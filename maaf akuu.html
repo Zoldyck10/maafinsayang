@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya? ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            width: 100%;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .gif-container img {
+            width: 150px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        #btn-yes {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            z-index: 999; /* Memastikan tombol Mau tetap di depan saat membesar */
+        }
+
+        #btn-no {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        /* Halaman Sukses */
+        .hidden {
+            display: none !important;
+        }
+
+        .heart {
+            color: #ff4d6d;
+            font-size: 50px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.15); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Kartu Utama -->
+    <div class="container" id="card">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0cmN0ZzN0Y2g1ZDY0bW94bHA4Z3BwYm95b3V5bXN0Y3Z5dG9pbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bear">
+        </div>
+        <h1>Maafin Aku Ya? 🥺</h1>
+        <p>i'm so sorry, I keep making mistakes, over and over again. I don't know what to do, and I feel like I don't deserve to ask you for another chance. But honestly, I never wanted any of this to happen. I'm so sorry. I can only hope that your love for me hasn't changed, and that I can become a better person for you again.</p>
+        
+        <div class="btn-group">
+            <button id="btn-yes" onclick="maafDiterima()">Mau ❤️</button>
+            <button id="btn-no" onclick="perbesarMau()">Nggak 😜</button>
+        </div>
+    </div>
+
+    <!-- Kartu Setelah Dimaafkan -->
+    <div class="container hidden" id="success-card">
+        <div class="heart">❤️</div>
+        <h1>Yeyyy! Makasih Sayang!</h1>
+        <p>Makasih udah mau maafin aku. Aku janji bakal berusaha jadi lebih baik lagi buat kamu. I love you so much! 🥰✨</p>
+    </div>
+
+    <script>
+        let ukuranSekarang = 16; // Ukuran font awal tombol "Mau" dalam pixel
+        let paddingAtasBawah = 12;
+        let paddingKiriKanan = 25;
+
+        // Daftar teks candaan kalau dia nekat klik tombol "Nggak"
+        const teksNo = [
+            "Nggak 😜",
+            "Eh, yakin?",
+            "Mikir dulu...",
+            "Enggak bisa diklik!",
+            "Plisss maafin 🥺",
+            "Harus dimaafkan!"
+        ];
+        let indeksTeks = 0;
+
+        function perbesarMau() {
+            const btnYes = document.getElementById('btn-yes');
+            const btnNo = document.getElementById('btn-no');
+
+            // Tambah ukuran tombol "Mau"
+            ukuranSekarang += 10; 
+            paddingAtasBawah += 6;
+            paddingKiriKanan += 12;
+
+            btnYes.style.fontSize = ukuranSekarang + 'px';
+            btnYes.style.padding = `${paddingAtasBawah}px ${paddingKiriKanan}px`;
+
+            // Ganti-ganti teks tombol "Nggak" biar makin lucu
+            indeksTeks = (indeksTeks + 1) % teksNo.length;
+            btnNo.innerText = teksNo[indeksTeks];
+        }
+
+        function maafDiterima() {
+            document.getElementById('card').classList.add('hidden');
+            document.getElementById('success-card').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
